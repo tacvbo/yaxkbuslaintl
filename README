@@ -1,0 +1,45 @@
+===============================================================================
+===                                yaXKBuslaintl
+===                    Yet another XKB US International Layout
+===
+===                   by Octavio H Ruiz Cervera <tacvbo@tacvbo.net>
+===============================================================================
+
+-------------------------------------------------------------------------------
+--- DESCRIPTION----------------------------------------------------------------
+
+  yaXKBuslaintl is yet another XKB US International Layout with latin
+characters like diacritics and symbols and no dead-keys at first level. It's
+heavy based on us_intl and latin symbols.
+
+  Probably there is a better way to achieve the same results, maybe a proper
+XKB configuration inheriting some symbols like latin with nodeakeys and using
+just the vanilla xorg installation. Meanwhile I've used this layout for a while.
+If you ever have had time to figure out how XKB works deeply I would appreciate
+your comments.
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+--- INSTALL -------------------------------------------------------------------
+
+Replace your /usr/share/X11/xkb/symbols/us and configure xorg.conf accordingly 
+
+--- xorg.conf
+
+  Option    "XkbLayout"     "us"
+  Option    "XkbVariant"    "laintl"
+  Option    "XkbOptions"    "grp:shift_toggle,grp_led:scroll,lv3:lwin_switch"
+                                  [1]                [2]             [3]
+
+                        [1] Press both shift keys at same time
+                            and you will switch between layouts
+                        [2] When you switch from layouts, turn
+                            on/off scroll-lock led
+                        [3] Use <LWIN> key like AltGr (RALT)
+
+--- Howto regenerate XKB symbols
+
+ # cd /usr/lib/X11/xkb/symbols
+ # xkbcomp -lhlpR '*' -o ../symbols.dir
+
+-------------------------------------------------------------------------------
