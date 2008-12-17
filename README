@@ -37,6 +37,19 @@ Replace your /usr/share/X11/xkb/symbols/us and configure xorg.conf accordingly
                             on/off scroll-lock led
                         [3] Use <LWIN> key like AltGr (RALT)
 
+--- Xorg 1.5 Note
+
+Xorg 1.5 does not support the Xkb* options inside xorg.conf, instead it relies on HAL for language settings:
+
+<?xml version="1.0" encoding="utf-8"?>
+<deviceinfo version="0.2">
+   <match key="info.capabilities" contains="input.keys">
+      <merge key="input.xkb.model" type="string">evdev</merge>
+      <merge key="input.xkb.layout" type="string">us</merge>
+      <merge key="input.xkb.variant" type="string">laintl</merge>
+   </match>
+</deviceinfo>
+
 --- Howto regenerate XKB symbols
 
  # cd /usr/lib/X11/xkb/symbols
